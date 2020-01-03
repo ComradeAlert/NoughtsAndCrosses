@@ -1,11 +1,12 @@
 package justcompany.noughtsandcrosses;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TicTacToe {
+class TicTacToe {
 
-    private Map<Integer, Status> field;
+    private Map<Integer, Status> field = new HashMap<>();
 
     TicTacToe(List<Integer> btns) {
         for (Integer i : btns) {
@@ -17,7 +18,7 @@ public class TicTacToe {
         return field.get(id);
     }
 
-    public void setStatus(Integer id, Status status) {
+    void setStatus(Integer id, Status status) {
         field.put(id, status);
     }
 }
