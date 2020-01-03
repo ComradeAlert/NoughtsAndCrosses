@@ -1,8 +1,12 @@
 package justcompany.noughtsandcrosses;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,5 +21,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void answer(View view) {
+        Button btn = (Button) view;
+        Status status = field.getStatus(btn.getId());
+
+        if (status.equals(Status.CLEAR)){
+            btn.setText("X");
+            field.setStatus(btn.getId(), Status.CROSS);
+        }
+
+        if (status.equals(Status.CROSS)){
+            btn.setText("O");
+            field.setStatus(btn.getId(), Status.NOUGHT);
+        }
     }
 }
