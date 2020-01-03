@@ -17,7 +17,8 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="answer" />
 
         <Button
             android:id="@+id/button12"
@@ -25,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="answer"
             android:text="" />
 
         <Button
@@ -33,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="answer"
             android:text="" />
     </LinearLayout>
 
@@ -47,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="answer"
             android:text="" />
 
         <Button
@@ -55,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="answer"
             android:text="" />
 
         <Button
@@ -63,7 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="" />
+            android:text=""
+            android:onClick="answer" />
     </LinearLayout>
 
     <LinearLayout
@@ -77,6 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="answer"
             android:text="" />
 
         <Button
@@ -85,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="answer"
             android:text="" />
 
         <Button
@@ -93,6 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="answer"
             android:text="" />
     </LinearLayout>
 
