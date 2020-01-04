@@ -14,10 +14,10 @@ public class MainActivity extends AppCompatActivity {
 
     private TicTacToe game = new TicTacToe(
             Arrays.asList(
-            R.id.button11, R.id.button12, R.id.button13,
-            R.id.button21, R.id.button22, R.id.button23,
-            R.id.button31, R.id.button32, R.id.button33
-    ));
+                    R.id.button11, R.id.button12, R.id.button13,
+                    R.id.button21, R.id.button22, R.id.button23,
+                    R.id.button31, R.id.button32, R.id.button33
+            ));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +27,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void answer(View view) {
         Button btn = (Button) view;
-        Status status = field.getStatus(btn.getId());
+        Status status = game.getStatus(btn.getId());
 
-        if (status.equals(Status.CLEAR)){
+        if (status.equals(Status.CLEAR)) {
             btn.setText("X");
-            field.setStatus(btn.getId(), Status.CROSS);
+            game.setStatus(btn.getId(), Status.CROSS);
+
+            if (game.canComputerDoTurn())computerTurn();
         }
 
-        if (status.equals(Status.CROSS) || status.equals(Status.NOUGHT)){
+        if (status.equals(Status.CROSS) || status.equals(Status.NOUGHT)) {
             msgMistake("Так нельзя =)");
         }
+    }
+
+    void computerTurn() {
+        Button btn = findViewById(game.idButtonForComputerTurn());
+        btn.setText("O");
     }
 
     private void msgMistake(String text) {
