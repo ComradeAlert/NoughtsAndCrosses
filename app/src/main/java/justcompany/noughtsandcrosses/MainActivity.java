@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TicTacToe field = new TicTacToe(
+    private TicTacToe game = new TicTacToe(
             Arrays.asList(
             R.id.button11, R.id.button12, R.id.button13,
             R.id.button21, R.id.button22, R.id.button23,
