@@ -9,13 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+    private TicTacToe game = new TicTacToe(Arrays.asList(buttons));
 
-    private TicTacToe game = new TicTacToe(
-            Arrays.asList(
-                    R.id.button11, R.id.button12, R.id.button13,
-                    R.id.button21, R.id.button22, R.id.button23,
-                    R.id.button31, R.id.button32, R.id.button33
-            ));
+    static Integer[] buttons = {
+            R.id.button11, R.id.button12, R.id.button13,
+            R.id.button21, R.id.button22, R.id.button23,
+            R.id.button31, R.id.button32, R.id.button33};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        newGame();
                     }
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
@@ -100,15 +100,20 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        game = new TicTacToe(
-                                Arrays.asList(
-                                        R.id.button11, R.id.button12, R.id.button13,
-                                        R.id.button21, R.id.button22, R.id.button23,
-                                        R.id.button31, R.id.button32, R.id.button33
-                                ));
+                        newGame();
                     }
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    void newGame() {
+        game = new TicTacToe(Arrays.asList(buttons));
+        Button btn;
+
+        for (Integer btnId: buttons) {
+            btn = findViewById(btnId);
+            btn.setText("");
+        }
     }
 }
