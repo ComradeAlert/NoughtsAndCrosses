@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
         btn.setText("O");
     }
 
-    private void msgMistake(String text) {
+    private void msgMistake() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
         alertDialogBuilder.setTitle("Sorry. You are mistaken.");
         alertDialogBuilder
-                .setMessage(text)
+                .setMessage("Так нельзя =)")
                 .setCancelable(true)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
