@@ -33,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
             btn.setText("X");
             game.setStatus(btn.getId(), Status.CROSS);
 
-            if (game.canComputerDoTurn())computerTurn();
+            if (game.canDoTurn()) {
+                computerTurn();
+            }
         }
 
         if (status.equals(Status.CROSS) || status.equals(Status.NOUGHT)) {

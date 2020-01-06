@@ -34,7 +34,7 @@ class TicTacToe {
         return idBttnForTurn;
     }
 
-    public boolean canComputerDoTurn() {
+    boolean canDoTurn() {
         boolean rsl = true;
         if (clearCells.size() == 0) {
             rsl = false;
