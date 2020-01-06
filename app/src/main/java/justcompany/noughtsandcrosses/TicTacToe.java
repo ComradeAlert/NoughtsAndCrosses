@@ -8,16 +8,23 @@ import java.util.Random;
 
 class TicTacToe {
 
-    private Map<Integer, Status> field = new HashMap<>();
+    private Map<Integer,Cell> cells = new HashMap<>();
     private List<Integer> clearCells = new ArrayList<>();
     private int [] canvas = {0,0,0,
                              0,0,0,
                              0,0,0};
 
     TicTacToe(List<Integer> btns) {
-        for (Integer id : btns) {
-            field.put(id, Status.CLEAR);
+        int numberCell = 0;
+
+        for (Integer idButton : btns) {
+            Cell cell = new Cell();
+            cell.number = numberCell++;
+            cell.status = Status.CLEAR;
+
+            cells.put(idButton, cell);
         }
+
         clearCells.addAll(btns);
     }
 
@@ -25,24 +32,26 @@ class TicTacToe {
         return cells.get(idButton).status;
     }
 
-    void setStatus(Integer id, Status status) {
-        field.put(id, status);
-        clearCells.remove(id);
+    void setStatus(Integer idButton, Status status) {
+        Cell cell = cells.get(idButton);
+        cell.status = status;
+        cells.put(idButton, cell);
+        clearCells.remove(idButton);
+        canvas[cell.number] = status.value;
     }
 
     Integer idButtonForComputerTurn() {
         Random rnd = new Random();
-        Integer idBttnForTurn = clearCells.get(rnd.nextInt(clearCells.size()));
-        setStatus(idBttnForTurn, Status.NOUGHT);
-        return idBttnForTurn;
+        Integer idButtonForTurn = clearCells.get(rnd.nextInt(clearCells.size()));
+        return idButtonForTurn;
     }
 
-    boolean canDoTurn() {
-        boolean rsl = true;
+    Boolean canDoTurn() {
+        Boolean canDoTurn = true;
         if (clearCells.size() == 0) {
-            rsl = false;
+            canDoTurn = false;
         }
-        return rsl;
+        return canDoTurn;
     }
 
     Boolean thisMoveLedToVictory(Integer idButtonFromLastTurn) {
