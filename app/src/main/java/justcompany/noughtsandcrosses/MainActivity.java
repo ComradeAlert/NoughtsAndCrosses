@@ -5,9 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,9 +33,10 @@ public class MainActivity extends AppCompatActivity {
             if (game.thisMoveLedToVictory(btn.getId())) {
                 msgWin("Humanoid");
             }
-
-            if (game.canDoTurn()) {
-                computerTurn();
+            else {
+                if (game.canDoTurn()) {
+                    computerTurn();
+                }
             }
         }
 
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void computerTurn() {
+    private void computerTurn() {
         Button btn = findViewById(game.idButtonForComputerTurn());
         btn.setText("O");
         game.setStatus(btn.getId(), Status.NOUGHT);
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void msgWin(String player) {
+    private void msgWin(String player) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
         alertDialogBuilder.setTitle("GameOver");
         alertDialogBuilder
