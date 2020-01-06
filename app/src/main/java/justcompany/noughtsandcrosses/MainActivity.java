@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void answer(View view) {
         Button btn = (Button) view;
-        Status status = game.getStatus(btn.getId());
+        Status status = game.getButtonStatus(btn.getId());
 
         if (status.equals(Status.CLEAR)) {
             btn.setText("X");

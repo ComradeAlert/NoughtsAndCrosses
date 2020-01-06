@@ -18,8 +18,8 @@ class TicTacToe {
         clearCells.addAll(btns);
     }
 
-    Status getStatus(Integer id) {
-        return field.get(id);
+    Status getButtonStatus(Integer idButton) {
+        return cells.get(idButton).status;
     }
 
     void setStatus(Integer id, Status status) {
