@@ -41,4 +41,14 @@ class TicTacToe {
         }
         return rsl;
     }
+
+    boolean win() {
+        boolean rsl = false;
+
+
+
+
+
+        return rsl;
+    }
 }

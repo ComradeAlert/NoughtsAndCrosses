@@ -39,7 +39,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (status.equals(Status.CROSS) || status.equals(Status.NOUGHT)) {
-            msgMistake("Так нельзя =)");
+            if (game.canDoTurn()) {
+                msgMistake();
+            }
+            else {
+                //new game
+            }
         }
     }
 
