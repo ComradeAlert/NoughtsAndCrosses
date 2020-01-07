@@ -11,6 +11,14 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     private TicTacToe game = new TicTacToe(Arrays.asList(buttons));
 
+    private static final String CLEAR = "";
+    private static final String CROSS = "X";
+    private static final String NOUGHT = "O";
+
+    private ArrayList<Integer> clearCells = new ArrayList<>();
+    private ArrayList<Integer> crossCells = new ArrayList<>();
+    private ArrayList<Integer> noughtCells = new ArrayList<>();
+
     static Integer[] buttons = {
             R.id.button11, R.id.button12, R.id.button13,
             R.id.button21, R.id.button22, R.id.button23,
