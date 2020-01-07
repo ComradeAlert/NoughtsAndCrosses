@@ -36,8 +36,10 @@ class TicTacToe {
         Cell cell = cells.get(idButton);
         cell.status = status;
         cells.put(idButton, cell);
-        clearCells.remove(idButton);
         canvas[cell.number] = status.value;
+        if (status.equals(Status.CROSS) || status.equals(Status.NOUGHT)) {
+            clearCells.remove(idButton);
+        }
     }
 
     Integer idButtonForComputerTurn() {
