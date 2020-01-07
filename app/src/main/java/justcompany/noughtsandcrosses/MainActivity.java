@@ -3,9 +3,12 @@ package justcompany.noughtsandcrosses;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +31,55 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        load(savedInstanceState);
+        Log.d(MainActivity.class.getName(), "onCreate");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        for (Integer idButton : buttons) {
+            Status status = game.getButtonStatus(idButton);
+            switch (status) {
+                case CLEAR:
+                    clearCells.add(idButton);
+                    break;
+                case CROSS:
+                    crossCells.add(idButton);
+                    break;
+                case NOUGHT:
+                    noughtCells.add(idButton);
+                    break;
+            }
+        }
+
+        outState.putIntegerArrayList(CLEAR, clearCells);
+        outState.putIntegerArrayList(CROSS, crossCells);
+        outState.putIntegerArrayList(NOUGHT, noughtCells);
+
+        Log.d(MainActivity.class.getName(), "onSaveInstanceState");
+    }
+
+    private void load(Bundle state) {
+        if (state != null) {
+            Button button;
+            for (Integer idButton : state.getIntegerArrayList(CLEAR)) {
+                button = findViewById(idButton);
+                button.setText(CLEAR);
+                game.setStatus(idButton, Status.CLEAR);
+            }
+            for (Integer idButton : state.getIntegerArrayList(CROSS)) {
+                button = findViewById(idButton);
+                button.setText(CROSS);
+                game.setStatus(idButton, Status.CROSS);
+            }
+            for (Integer idButton : state.getIntegerArrayList(NOUGHT)) {
+                button = findViewById(idButton);
+                button.setText(NOUGHT);
+                game.setStatus(idButton, Status.NOUGHT);
+            }
+        }
     }
 
     public void answer(View view) {
@@ -35,12 +87,11 @@ public class MainActivity extends AppCompatActivity {
         Status status = game.getButtonStatus(btn.getId());
 
         if (status.equals(Status.CLEAR)) {
-            btn.setText("X");
+            btn.setText(CROSS);
             game.setStatus(btn.getId(), Status.CROSS);
             if (game.thisMoveLedToVictory(btn.getId())) {
                 msgWin("Humanoid");
-            }
-            else {
+            } else {
                 if (game.canDoTurn()) {
                     computerTurn();
                 }
@@ -58,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void computerTurn() {
         Button btn = findViewById(game.idButtonForComputerTurn());
-        btn.setText("O");
+        btn.setText(NOUGHT);
         game.setStatus(btn.getId(), Status.NOUGHT);
         if (game.thisMoveLedToVictory(btn.getId())) {
             msgWin("Computer");
@@ -119,9 +170,9 @@ public class MainActivity extends AppCompatActivity {
         game = new TicTacToe(Arrays.asList(buttons));
         Button btn;
 
-        for (Integer btnId: buttons) {
+        for (Integer btnId : buttons) {
             btn = findViewById(btnId);
-            btn.setText("");
+            btn.setText(CLEAR);
         }
     }
 }
